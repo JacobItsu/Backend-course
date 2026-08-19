@@ -4,60 +4,69 @@
 
 ```
 activities/class-02/
-├── README.md                      ← Este archivo
-├── lite-api/                      ← API Lite original (con bugs)
+├── README.md
+├── Actividad 1 - API Lite/
 │   ├── package.json
 │   ├── README.md
-│   └── server.js
-├── project/                       ← Proyecto Full completo
+│   ├── server.js
+│   └── lite-analysis.md
+├── Actividad 2 - API Full/
 │   ├── package.json
 │   ├── README.md
+│   ├── comparison.md
+│   ├── ai-usage.md
 │   ├── docs/
-│   │   └── http-contract.md       ← Contrato HTTP definido antes del código
+│   │   └── http-contract.md
 │   └── src/
 │       ├── app.js
 │       ├── server.js
 │       ├── routes/
-│       │   └── requests.routes.js ← Endpoints implementados
+│       │   └── requests.routes.js
 │       └── data/
-│           └── requests.js        ← Datos en memoria
-├── lite-analysis.md               ← Análisis independiente del Lite
-├── comparison.md                  ← Comparación Lite vs Full
-├── ai-usage.md                    ← Documento de uso de IA
-└── activity resources/            ← Archivos originales de la presentación
+│           └── requests.js
+└── activity resources/
+    ├── request-api-lite/
+    └── request-api-full-template/
 ```
 
-## Cómo instalar y ejecutar
+## Actividad 1 — API Lite
 
-### API Lite
+Análisis independiente de una API existente con inconsistencias intencionales.
+
+### Cómo ejecutar
 
 ```bash
-cd lite-api
+cd "Actividad 1 - API Lite"
 npm install
 node server.js
 ```
 
-### Proyecto Full
+### Defectos encontrados
+
+1. Ruta `/getRequests` usa un verbo en lugar de sustantivo
+2. `GET /requests/:id` devuelve 200 cuando el recurso no existe
+3. `POST /requests` devuelve 200 en lugar de 201
+4. Acepta creación sin campo `title`
+
+## Actividad 2 — API Full
+
+Construcción de una API con Express siguiendo un contrato HTTP definido.
+
+### Cómo ejecutar
 
 ```bash
-cd project
+cd "Actividad 2 - API Full"
 npm install
 node src/server.js
 ```
 
-Ambos servidores corren en `http://localhost:3000`.
+### Endpoints implementados
 
-## Defectos encontrados en el Lite
+- `GET /requests` → 200 con arreglo de solicitudes
+- `GET /requests/:id` → 200 o 404
+- `POST /requests` → 201 o 400
 
-1. **Ruta con verbo:** `/getRequests` usa un verbo en lugar de un sustantivo. Debería ser `/requests`.
-2. **Estado incoherente:** `GET /requests/:id` devuelve 200 cuando el recurso no existe, con un body que indica error.
-3. **Código de creación incorrecto:** `POST /requests` devuelve 200 en lugar de 201.
-4. **Sin validación:** Acepta creación de solicitudes sin campo `title`.
+## Tags de entrega
 
-## Decisiones tomadas en el Full
-
-- **Contrato definido antes del código:** Se escribió `http-contract.md` primero como guía de implementación.
-- **Estructura modular:** Separación de responsabilidades entre server, app, routes y data.
-- **Validación server-side:** El campo `title` se valida en el servidor y devuelve 400 si falta.
-- **Códigos de estado correctos:** 201 para creación, 404 para recursos inexistentes, 400 para datos inválidos.
-- **Exclusiones respetadas:** Sin base de datos, sin PUT/PATCH/DELETE, sin autenticación, sin frontend.
+- `class-02-lite-analysis` — Análisis del Lite antes de usar IA
+- `class-02-submission` — Entrega final
