@@ -9,7 +9,6 @@
 
 | Archivo | Contenido |
 | ------- | --------- |
-| `cuestionario-diseno.md` | Base del análisis: respuestas del estudiante antes de la IA |
 | `resource-model.md` | Modelo persistente (tablas `requests` y `request_status_history`) |
 | `http-contract.md` | Contrato HTTP de la API v4 (v3 + `GET /requests/:id/history`) |
 | `transition-map.md` | Mapa de transiciones (mismo dominio que clase 3 + eventos en historial) |

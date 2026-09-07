@@ -21,7 +21,8 @@ Registro honesto de dónde y cómo se usó IA en la clase 04, siguiendo la regla
 
 ## Fase 2 — Diseño (sin IA)
 
-- El estudiante respondió el cuestionario de 19 preguntas (`cuestionario-diseno.md`):
+- El estudiante respondió el cuestionario de 19 preguntas de la clase
+  (instrumento de trabajo, no publicado):
   modelo persistente, CHECKs, índice, `FOR UPDATE`, atomicidad, contrato v4 y matriz.
 - La IA **no** tomó decisiones de diseño: transcribió las respuestas a
   `resource-model.md`, `http-contract.md`, `transition-map.md` y `test-matrix.md`.
@@ -54,6 +55,6 @@ Registro honesto de dónde y cómo se usó IA en la clase 04, siguiendo la regla
 | Fase | ¿IA? | Producto |
 | ---- | ---- | -------- |
 | Base starter v4 | Sí (autorizada) | código inicial en `project/` |
-| Diseño | No | `cuestionario-diseno.md` + documentos oficiales + refinamientos (índice, `FOR UPDATE`, history) |
+| Diseño | No | respuestas del cuestionario (no publicado) → documentos oficiales + refinamientos (índice, `FOR UPDATE`, history) |
 | Implementación | Sí (refinamientos del análisis) | ajustes a migración/store/mapper |
 | Verificación | No (terminal) | evidencia 11/11 en `test-matrix.md` |

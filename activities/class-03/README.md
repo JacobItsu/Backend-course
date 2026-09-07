@@ -7,7 +7,6 @@
 
 | Archivo | Contenido |
 | ------- | --------- |
-| `cuestionario-diseno.md` | Base del diseño: respuestas del estudiante antes de la IA |
 | `resource-model.md` | Modelo de recursos (`MaintenanceRequest`) |
 | `http-contract.md` | Contrato HTTP de la API v3 |
 | `transition-map.md` | Mapa de transiciones de estados |

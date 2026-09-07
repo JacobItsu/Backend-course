@@ -6,8 +6,8 @@ Registro honesto de dónde y cómo se usó IA en la clase 03, siguiendo la regla
 ## Fase 1 — Diseño (sin IA)
 
 - El contrato HTTP, el modelo de recursos, el mapa de transiciones y la matriz de prueba
-  **los decidió el estudiante** respondiendo el cuestionario de diseño
-  (`cuestionario-diseno.md`), a partir de los casos de la clase 2.
+  **los decidió el estudiante** respondiendo el cuestionario de diseño de la clase
+  (instrumento de trabajo, no publicado), a partir de los casos de la clase 2.
 - La IA **no** tomó decisiones de diseño: escribió los documentos oficiales
   (`resource-model.md`, `http-contract.md`, `transition-map.md`, `test-matrix.md`) como
   transcriptora de las respuestas del estudiante y los normalizó a las plantillas del curso.
