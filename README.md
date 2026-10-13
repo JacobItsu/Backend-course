@@ -19,7 +19,8 @@ Backend-course/
     ├── class-03/
     ├── class-04/
     ├── class-05/
-    └── class-06/
+    ├── class-06/
+    └── class-08/
 ```
 
 ## Clases y entregas
@@ -32,6 +33,7 @@ Backend-course/
 | [04 — Persistencia, integridad e historia](activities/class-04/) | Backend persistente en PostgreSQL (Supabase) | `class-04-design`, `class-04-submission` | ✅ |
 | [05 — Autenticación, propiedad y permisos](activities/class-05/) | JWT, ownership y control de acceso | `class-05-submission` | ✅ |
 | [06 — Tu primer ticket en un backend existente](activities/class-06/) | Corregir BUG-106, implementar FEATURE-206, validador final | `class-06-submission` | ✅ |
+| [08 — El cambio pequeño que toca todo](activities/class-08/) | Refactor + FEATURE-801 claim, arquitectura route/service/store/policy | `class-08-submission` | ✅ |
 
 ## Recorrido del proyecto transversal
 
@@ -52,6 +54,9 @@ La misma entidad (**solicitudes de mantenimiento**) evoluciona a lo largo del cu
 6. **Clase 6** — onboarding en un backend existente: comprender un código heredado,
    corregir una regresión (BUG-106), implementar un endpoint nuevo (FEATURE-206)
    y demostrar todo con un validador automático.
+7. **Clase 8** — refactor del handler monolítico (GET /:id/history) a arquitectura
+   route/service/store/policy, e implementación de FEATURE-801 (claim) con transacción
+   consistente asignación+historial, validador de arquitectura (12 checks).
 
 ## Decisiones transversales
 
