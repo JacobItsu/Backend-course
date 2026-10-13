@@ -1,0 +1,100 @@
+{
+  "protocolVersion": "ITSU-KNOWLEDGE-09-1.0",
+  "rubricVersion": "BACKEND-01-08-K1",
+  "evaluationId": "K09-jacoborodriguez-itsu-23e6519",
+  "studentId": "jacoborodriguez-itsu",
+  "commit": "23e6519",
+  "variant": "A",
+  "status": "INSUFFICIENT_EVIDENCE",
+  "action": "SUPPORT",
+  "questions": [
+    {
+      "questionId": "Q1",
+      "topics": ["HTTP", "request flow", "architecture layers"],
+      "levels": { "conceptual": 2, "grounding": 2, "reasoning": 2, "verification": 2 },
+      "evidence": ["el archivo services es quien se encarga de manejar la peticion mientras que rutas la transporta", "el orden es Routes, Policy, Status, Service, Mapper, Store"],
+      "strength": "Identifica los archivos y capas principales del módulo de solicitudes.",
+      "gap": "Confusión sobre el límite exacto de la responsabilidad HTTP, atribuyéndolo a la capa de servicio.",
+      "rectification": "",
+      "confidence": "medium"
+    },
+    {
+      "questionId": "Q2",
+      "topics": ["transactions", "data integrity", "rollback"],
+      "levels": { "conceptual": 3, "grounding": 2, "reasoning": 3, "verification": 2 },
+      "evidence": ["La invariante afectada es la consistencia transaccional (o de auditoría)", "el rollback deshace los cambios y el commit queda completamente descartado"],
+      "strength": "Diferenciación conceptual clara entre la naturaleza stateless de HTTP y la necesidad de consistencia e integridad transaccional en la base de datos.",
+      "gap": "Ubica la ejecución genéricamente en el store sin precisar el cliente transaccional que coordina la transacción en el servicio.",
+      "rectification": "",
+      "confidence": "medium"
+    },
+    {
+      "questionId": "Q3",
+      "topics": ["authentication", "authorization", "jwt"],
+      "levels": { "conceptual": 3, "grounding": 2, "reasoning": 3, "verification": 2 },
+      "evidence": ["Autenticación: Verifica quién eres... Autorización: Verifica si tienes permiso sobre el recurso", "es el JWT o Token ID quien resguarda esa informacion como si fuera una huella"],
+      "strength": "Clara distinción conceptual entre autenticación y autorización, así como la justificación de no confiar en identificadores enviados en el cuerpo o query.",
+      "gap": "Imprecisión al atribuir la verificación del JWT genéricamente a Node.js en lugar del middleware `authenticate.js`.",
+      "rectification": "",
+      "confidence": "medium"
+    },
+    {
+      "questionId": "Q4",
+      "topics": [],
+      "levels": { "conceptual": "X", "grounding": "X", "reasoning": "X", "verification": "X" },
+      "evidence": [],
+      "strength": "",
+      "gap": "Pregunta no abordada durante la sesión.",
+      "rectification": "",
+      "confidence": "low"
+    },
+    {
+      "questionId": "Q5",
+      "topics": [],
+      "levels": { "conceptual": "X", "grounding": "X", "reasoning": "X", "verification": "X" },
+      "evidence": [],
+      "strength": "",
+      "gap": "Pregunta no abordada durante la sesión.",
+      "rectification": "",
+      "confidence": "low"
+    }
+  ],
+  "priorityGaps": [
+    "Delimitación clara de responsabilidades HTTP en el controlador/rutas frente a la capa de servicio.",
+    "Manejo y propagación del cliente transaccional (`db` / `client`) entre el servicio y el repositorio/store.",
+    "Ubicación y funcionamiento de los middlewares de autenticación dentro del pipeline de Express."
+  ],
+  "strengths": [
+    "Comprensión firme de los principios de consistencia transaccional y la irrelevancia del estado stateless de HTTP sobre la base de datos.",
+    "Distinción precisa entre autenticación (quién es el usuario) y autorización (permisos sobre el recurso).",
+    "Comprensión de la integridad criptográfica del JWT frente a parámetros no confiables del cliente."
+  ],
+  "recommendedStudyActions": [
+    "Revisar el archivo `src/middleware/authenticate.js` para comprender exactamente cómo se valida la firma del JWT y se adjunta `req.user`.",
+    "Examinar el patrón de transacciones en `src/database/transaction.js` y cómo `requests.service.js` pasa el cliente transaccional a las funciones de `requests.store.js`.",
+    "Analizar el desacoplamiento de la capa de servicio para asegurar que no reciba ni procese objetos del pipeline HTTP (`req`, `res`)."
+  ],
+  "reviewSignals": ["NONE"],
+  "teacherReview": {
+    "priority": "medium",
+    "oralVerificationRecommended": false,
+    "questions": [
+      {
+        "questionId": "Q1",
+        "question": "¿En qué capa o archivo específico de Express se extraen los parámetros HTTP antes de llamar a las funciones del servicio?",
+        "expectedMinAnswer": "En las rutas/controladores (`requests.routes.js`), donde se leen `req.params` o `req.body` y se pasan únicamente los valores necesarios como argumentos al servicio."
+      },
+      {
+        "questionId": "Q2",
+        "question": "¿Cómo asegura la capa de servicio que las llamadas a `updateRequest` e `insertHistoryEvent` se ejecuten dentro de la misma transacción?",
+        "expectedMinAnswer": "Creando una transacción con el cliente de base de datos y pasándolo como argumento opcional (`db`) a ambas funciones del store."
+      }
+    ],
+    "minimumExpectedAnswers": [
+      "Extracción de parámetros en rutas/controladores antes de llamar al servicio.",
+      "Paso explícito del cliente transaccional `db` a las operaciones del store."
+    ],
+    "reason": "El estudiante demuestra sólida base conceptual en seguridad e integridad, pero requiere afianzar el rastreo exacto de código en la arquitectura.",
+    "digest": "Dominio conceptual claro en transacciones y seguridad JWT, pero pendiente profundizar en el pipeline exacto de Express y transacciones en código."
+  }
+}
